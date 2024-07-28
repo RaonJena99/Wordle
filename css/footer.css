@@ -1,0 +1,38 @@
+footer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.keyboard{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.keyblock{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 45px;
+  height: 60px;
+  background-color: #d3d6da;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 19px;
+  cursor: pointer;
+}
+
+.keyblock.r3-c1{
+  width: 70px;
+  height: 60px;
+  font-size: 12px;
+}
+
+.keyblock.r3-c9{
+  width: 70px;
+  height: 60px;
+}
