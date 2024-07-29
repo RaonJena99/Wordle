@@ -1,14 +1,66 @@
+const 정답 = "APPLE";
+
 let index = 0;
 let attempts = 0;
+let chk;
+let timer;
+let time;
 
 function appStart() {
-  const handleEnterKey = () => {
-    console.log("엔터키");
+  const displayGameover = () => {
+    clearInterval(timer);
+    const div = document.createElement("div");
+    if (chk === 5) div.innerText = `정답입니다!!\n time:${time}`;
+    else div.innerText = "정답을 맞추지 못했습니다.";
+    div.style =
+      "display:flex; justify-content:center; align-items:center; position:absolute; top: 30%; left: 50%; transform: translate(-50%, -50%); background-color : rgb(255,255,255,0.8); height:40px; width:200px; border:thick double black; border-radius: 5px; font-weight:bold;";
+    document.body.appendChild(div);
   };
 
-  const handleKeydown = (event) => {
-    const key = event.key.toUpperCase();
-    const code = event.keyCode;
+  const gameover = () => {
+    window.removeEventListener("keydown", handleKey);
+    targetFirst.forEach((target) =>
+      target.removeEventListener("click", handleClick)
+    );
+    displayGameover();
+  };
+
+  const nextLine = () => {
+    if (attempts === 5) {
+      return gameover();
+    } else {
+      attempts++;
+      index = 0;
+    }
+  };
+
+  const handleEnterKey = () => {
+    chk = 0;
+    for (let i = 0; i < 5; i++) {
+      const block = document.querySelector(
+        `.block[data-index='${attempts}${i}']`
+      );
+
+      const 입력문자 = block.innerText;
+      if (정답[i] === 입력문자) {
+        block.style.background = "#6AAA64";
+        block.style.border = "2.3px solid #6AAA64";
+        chk++;
+      } else if (정답.includes(입력문자)) {
+        block.style.background = "#C9B458";
+        block.style.border = "2.3px solid #C9B458";
+      } else {
+        block.style.background = "#787C7E";
+        block.style.border = "2.3px solid #787C7E";
+      }
+      block.style.color = "white";
+    }
+
+    if (chk === 5) gameover();
+    else nextLine();
+  };
+
+  const handleKeydown = (key, code) => {
     let cur_block = document.querySelector(
       `.block[data-index='${attempts}${index}']`
     );
@@ -17,8 +69,11 @@ function appStart() {
     if (code === 13 && index === 5) handleEnterKey();
     // 알파벳
     else if (65 <= code && code <= 90) {
-      cur_block.innerText = key;
-      index++;
+      if (index < 5) {
+        cur_block.style.border = "2.3px solid black";
+        cur_block.innerText = key;
+        index++;
+      }
     }
     // 백스페이스
     else if (code === 8 && index != 0) {
@@ -26,10 +81,52 @@ function appStart() {
         `.block[data-index='${attempts}${--index}']`
       );
       cur_block.innerText = null;
+      cur_block.style.border = "2.3px solid #d3d6da";
     }
   };
 
-  window.addEventListener("keydown", handleKeydown);
+  //키보드를 눌렀을 때
+  const handleKey = (event) => {
+    const key = event.key.toUpperCase();
+    const code = event.keyCode;
+    handleKeydown(key, code);
+  };
+
+  //화면의 키보드를 클릭했을 때
+  const handleClick = (event) => {
+    let clickcode;
+    const clickkey = event.target.getAttribute("data-key");
+    if (clickkey === "ENTER") clickcode = 13;
+    else if (clickkey === "BACK") clickcode = 8;
+    else clickcode = clickkey.charCodeAt(0);
+    handleKeydown(clickkey, clickcode);
+  };
+
+  let targetFirst = document.querySelectorAll(".keyblock");
+  targetFirst.forEach((target) =>
+    target.addEventListener("click", handleClick)
+  );
+
+  const startTimer = () => {
+    const start_time = new Date();
+
+    function setTime() {
+      const cur_time = new Date();
+      const duration_time = new Date(cur_time - start_time);
+      const minutes = duration_time.getMinutes().toString();
+      const seconds = duration_time.getSeconds().toString();
+      const th1 = document.querySelector(".timer");
+      time = th1.innerText = `${minutes.padStart(2, "0")}:${seconds.padStart(
+        2,
+        "0"
+      )}`;
+    }
+
+    timer = setInterval(setTime, 1000);
+  };
+
+  startTimer();
+  window.addEventListener("keydown", handleKey);
 }
 
 appStart();
