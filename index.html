@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Wordle</title>
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
@@ -19,52 +19,54 @@
           <img id="question" src="assets/question.svg" alt="" />
           <img id="setting" src="assets/setting.svg" alt="" />
         </div>
-        <div class="timer">00:00</div>
+      </div>
+      <div class="timer">
+        <div>time: 00:00</div>
       </div>
     </header>
 
     <main>
       <div class="board r1">
-        <div class="block" data-index="00"></div>
-        <div class="block" data-index="01"></div>
-        <div class="block" data-index="02"></div>
-        <div class="block" data-index="03"></div>
-        <div class="block" data-index="04"></div>
+        <div class="block" data-index="00" data-state="idle"></div>
+        <div class="block" data-index="01" data-state="idle"></div>
+        <div class="block" data-index="02" data-state="idle"></div>
+        <div class="block" data-index="03" data-state="idle"></div>
+        <div class="block" data-index="04" data-state="idle"></div>
       </div>
       <div class="board r2">
-        <div class="block" data-index="10"></div>
-        <div class="block" data-index="11"></div>
-        <div class="block" data-index="12"></div>
-        <div class="block" data-index="13"></div>
-        <div class="block" data-index="14"></div>
+        <div class="block" data-index="10" data-state="idle"></div>
+        <div class="block" data-index="11" data-state="idle"></div>
+        <div class="block" data-index="12" data-state="idle"></div>
+        <div class="block" data-index="13" data-state="idle"></div>
+        <div class="block" data-index="14" data-state="idle"></div>
       </div>
       <div class="board r3">
-        <div class="block" data-index="20"></div>
-        <div class="block" data-index="21"></div>
-        <div class="block" data-index="22"></div>
-        <div class="block" data-index="23"></div>
-        <div class="block" data-index="24"></div>
+        <div class="block" data-index="20" data-state="idle"></div>
+        <div class="block" data-index="21" data-state="idle"></div>
+        <div class="block" data-index="22" data-state="idle"></div>
+        <div class="block" data-index="23" data-state="idle"></div>
+        <div class="block" data-index="24" data-state="idle"></div>
       </div>
       <div class="board r4">
-        <div class="block" data-index="30"></div>
-        <div class="block" data-index="31"></div>
-        <div class="block" data-index="32"></div>
-        <div class="block" data-index="33"></div>
-        <div class="block" data-index="34"></div>
+        <div class="block" data-index="30" data-state="idle"></div>
+        <div class="block" data-index="31" data-state="idle"></div>
+        <div class="block" data-index="32" data-state="idle"></div>
+        <div class="block" data-index="33" data-state="idle"></div>
+        <div class="block" data-index="34" data-state="idle"></div>
       </div>
       <div class="board r5">
-        <div class="block" data-index="40"></div>
-        <div class="block" data-index="41"></div>
-        <div class="block" data-index="42"></div>
-        <div class="block" data-index="43"></div>
-        <div class="block" data-index="44"></div>
+        <div class="block" data-index="40" data-state="idle"></div>
+        <div class="block" data-index="41" data-state="idle"></div>
+        <div class="block" data-index="42" data-state="idle"></div>
+        <div class="block" data-index="43" data-state="idle"></div>
+        <div class="block" data-index="44" data-state="idle"></div>
       </div>
       <div class="board r6">
-        <div class="block" data-index="50"></div>
-        <div class="block" data-index="51"></div>
-        <div class="block" data-index="52"></div>
-        <div class="block" data-index="53"></div>
-        <div class="block" data-index="54"></div>
+        <div class="block" data-index="50" data-state="idle"></div>
+        <div class="block" data-index="51" data-state="idle"></div>
+        <div class="block" data-index="52" data-state="idle"></div>
+        <div class="block" data-index="53" data-state="idle"></div>
+        <div class="block" data-index="54" data-state="idle"></div>
       </div>
     </main>
 

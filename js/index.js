@@ -15,6 +15,12 @@ function appStart() {
     div.style =
       "display:flex; justify-content:center; align-items:center; position:absolute; top: 30%; left: 50%; transform: translate(-50%, -50%); background-color : rgb(255,255,255,0.8); height:40px; width:200px; border:thick double black; border-radius: 5px; font-weight:bold;";
     document.body.appendChild(div);
+    var screen = document.querySelector("header");
+    screen.style.opacity = "0.6";
+    screen = document.querySelector("main");
+    screen.style.opacity = "0.6";
+    screen = document.querySelector("footer");
+    screen.style.opacity = "0.6";
   };
 
   const gameover = () => {
@@ -40,18 +46,27 @@ function appStart() {
       const block = document.querySelector(
         `.block[data-index='${attempts}${i}']`
       );
-
       const 입력문자 = block.innerText;
+
+      const keyboard = document.querySelector(
+        `.keyblock[data-key='${입력문자}']`
+      );
+      console.log(keyboard.style.background);
+
       if (정답[i] === 입력문자) {
         block.style.background = "#6AAA64";
         block.style.border = "2.3px solid #6AAA64";
+        keyboard.style.background = "#6AAA64";
         chk++;
       } else if (정답.includes(입력문자)) {
         block.style.background = "#C9B458";
         block.style.border = "2.3px solid #C9B458";
+        if (keyboard.style.background !== "rgb(106, 170, 100)")
+          keyboard.style.background = "#C9B458";
       } else {
         block.style.background = "#787C7E";
         block.style.border = "2.3px solid #787C7E";
+        keyboard.style.background = "#787C7E";
       }
       block.style.color = "white";
     }
@@ -72,6 +87,7 @@ function appStart() {
       if (index < 5) {
         cur_block.style.border = "2.3px solid black";
         cur_block.innerText = key;
+        cur_block.dataset.state = "run";
         index++;
       }
     }
@@ -80,6 +96,7 @@ function appStart() {
       cur_block = document.querySelector(
         `.block[data-index='${attempts}${--index}']`
       );
+      cur_block.dataset.state = "idle";
       cur_block.innerText = null;
       cur_block.style.border = "2.3px solid #d3d6da";
     }
@@ -115,11 +132,11 @@ function appStart() {
       const duration_time = new Date(cur_time - start_time);
       const minutes = duration_time.getMinutes().toString();
       const seconds = duration_time.getSeconds().toString();
-      const th1 = document.querySelector(".timer");
-      time = th1.innerText = `${minutes.padStart(2, "0")}:${seconds.padStart(
+      const th1 = document.querySelector(".timer div");
+      time = th1.innerText = `time: ${minutes.padStart(
         2,
         "0"
-      )}`;
+      )}:${seconds.padStart(2, "0")}`;
     }
 
     timer = setInterval(setTime, 1000);

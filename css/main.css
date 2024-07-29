@@ -1,3 +1,15 @@
+@keyframes size-change {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 main {
   display: flex;
   justify-content: center;
@@ -23,4 +35,8 @@ main {
   border: 2.3px solid #d3d6da;
   font-weight: bold;
   font-size: 25px;
+}
+
+.block[data-state="run"] {
+  animation: size-change 0.3s alternate;
 }

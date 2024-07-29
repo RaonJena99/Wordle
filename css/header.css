@@ -1,8 +1,3 @@
-header {
-  border-bottom: 1px solid #d3d6da;
-  margin-bottom: 10px;
-}
-
 .header-bar {
   height: 50px;
   display: flex;
@@ -10,6 +5,9 @@ header {
   align-items: center;
   position: relative;
   margin: 10px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #d3d6da;
+  margin-bottom: 15px;
 }
 
 .header-bar img {
@@ -37,10 +35,20 @@ header {
 }
 
 .timer {
-  position: absolute;
-  top: 65%;
-  left: 66%;
-  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.timer div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 5px;
+  width: 100px;
+  padding: 5.5px;
+  border-left: thick double black;
+  border-right: thick double black;
 }
 
 #bar:hover {
