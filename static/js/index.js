@@ -1,5 +1,3 @@
-const 정답 = "APPLE";
-
 let index = 0;
 let attempts = 0;
 let chk;
@@ -9,12 +7,12 @@ let time;
 function appStart() {
   const displayGameover = () => {
     clearInterval(timer);
-    const div = document.createElement("div");
+    const div = document.querySelector(".gameover");
     if (chk === 5) div.innerText = `정답입니다!!\n time:${time}`;
     else div.innerText = "정답을 맞추지 못했습니다.";
-    div.style =
-      "display:flex; justify-content:center; align-items:center; position:absolute; top: 30%; left: 50%; transform: translate(-50%, -50%); background-color : rgb(255,255,255,0.8); height:40px; width:200px; border:thick double black; border-radius: 5px; font-weight:bold;";
-    document.body.appendChild(div);
+    div.style = "opacity:1;";
+    div.dataset.gameover = "run";
+
     var screen = document.querySelector("header");
     screen.style.opacity = "0.6";
     screen = document.querySelector("main");
@@ -40,8 +38,11 @@ function appStart() {
     }
   };
 
-  const handleEnterKey = () => {
+  const handleEnterKey = async () => {
     chk = 0;
+    const 응답 = await fetch("/answer");
+    const 정답 = await 응답.json();
+
     for (let i = 0; i < 5; i++) {
       const block = document.querySelector(
         `.block[data-index='${attempts}${i}']`
@@ -119,11 +120,13 @@ function appStart() {
     handleKeydown(clickkey, clickcode);
   };
 
+  // 화면의 키보드 이벤트 등록
   let targetFirst = document.querySelectorAll(".keyblock");
   targetFirst.forEach((target) =>
     target.addEventListener("click", handleClick)
   );
 
+  // 타이머 진행
   const startTimer = () => {
     const start_time = new Date();
 

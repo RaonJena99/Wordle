@@ -39,4 +39,5 @@ footer {
 
 .keyblock:hover {
   background-color: #b6b7b7;
+  transform: scale(1.1);
 }
